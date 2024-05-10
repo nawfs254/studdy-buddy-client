@@ -2,6 +2,7 @@ import React from 'react';
 import logo from "../../assets/logo-study-buddy.png"
 import { MdEmail, MdKey } from 'react-icons/md';
 import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -35,6 +36,8 @@ const Login = () => {
                 </div>
 
                 <button className="btn bg-orange hover:bg-purple hover:text-white font-bold">Login</button>
+
+                <p>New Here? <Link to="/registration/register"><span className="text-orange font-bold">Create an account</span></Link></p>
             </form>
 
 
