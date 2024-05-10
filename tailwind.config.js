@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      'black': '#000',
+      'white': '#fff',
+      'orange': '#F97300',
+      'purple': '#32012F'
+    },
   },
   plugins: [
     require('daisyui'),
