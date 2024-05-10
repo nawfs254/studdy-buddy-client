@@ -6,7 +6,6 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
     const { user, signOutUser, setUser } = useContext(AuthContext)
-    console.log(user)
 
     const navigate = useNavigate()
 
@@ -17,6 +16,7 @@ const Navbar = () => {
                 navigate('/')
             })
     }
+    console.log(user)
 
     const navMenu =
         <div className="text-base md:text-lg flex flex-col md:flex-row">
@@ -57,11 +57,11 @@ const Navbar = () => {
             <div className="navbar-end gap-4">
 
                 {user ?
-                    <Link>
+                    
                         <div className="dropdown dropdown-end">
                             <div className="tooltip tooltip-left" tabIndex={0} role="button" data-tip="Username">
                                 <div className="w-16 h-16 rounded-full border-orange border-4">
-                                    <img src={userDefault} alt="" className="rounded-full" />
+                                    <img src={user.photoURL || userDefault} alt="" className="rounded-full" />
                                 </div>
                             </div>
                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -71,7 +71,7 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link>
+                                    <Link to="/user-profile">
                                         <button>My Profile</button>
                                     </Link>
                                 </li>
@@ -82,7 +82,7 @@ const Navbar = () => {
                                 </li>
                             </ul>
                         </div>
-                    </Link> :
+                     :
                     <div className="flex gap-2">
                         <Link to="/registration/login"><button className="btn text-base md:text-lg font-semibold bg-orange border-orange border-2 hover:bg-transparent hover:border-orange">Login</button></Link>
                         <Link to="/registration/register"><button className="btn text-base md:text-lg font-semibold border-2 border-purple hover:bg-purple hover:text-white">Register</button></Link>

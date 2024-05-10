@@ -1,15 +1,25 @@
 import logo from "../../assets/logo-study-buddy.png"
 import { MdEmail, MdKey } from 'react-icons/md';
 import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
-import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-    const {signInWithEmail, setUser} = useContext(AuthContext)
+    const {signInWithEmail, user, setUser} = useContext(AuthContext)
     
     const [isClicked, setIsClicked] = useState(false)
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
+
+    useEffect(() => {
+        if(user){
+            navigate(location.state)
+        }
+    }, [user])
 
     const toggleShowAndHide = () => {
         setIsClicked(!isClicked)

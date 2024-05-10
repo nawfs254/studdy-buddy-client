@@ -7,14 +7,18 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 
 const Register = () => {
-    const { registerWithEmail, setUser } = useContext(AuthContext)
+    const { registerWithEmail, updateUser, setUser } = useContext(AuthContext)
 
     const handleRegisterBtn = e => {
         e.preventDefault();
 
         const form = e.target;
 
-        const username = form.username.value;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+
+        const username = firstName + " " + lastName
+
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
@@ -22,44 +26,43 @@ const Register = () => {
 
         // console.log(username, email, password, photoUrl)
 
-        if (!/^[^\s]+$/.test(username)) {
-            
-            toast.error('username cannot contain any spaces')
-            return
-        }
 
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-            
+
             toast.error("Your provided email is invalid")
             return
         }
 
         if (password < 6) {
-            
+
             toast.error('Password must have 6 characters')
             return
         }
 
         if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
-        
+
             toast.error('Password must contain at least one uppercase and one lowercase')
             return
         }
 
         if (password !== confirmPassword) {
-        
+
             toast.error('Password and Confirm password must be the same')
             return
         }
 
-        else{
+        else {
             registerWithEmail(email, password)
                 .then(user => {
-                    setUser(user)
-                    toast.success("signed up")
+                    updateUser(username, photoUrl)
+                        .then(() => {
+                            setUser(user)
+                            toast.success("signed up")
+                            }
+                        )
+                        .catch(error => console.log(error))
                 })
-                .catch(error => console.log(error))
-            
+
         }
 
     }
@@ -77,10 +80,18 @@ const Register = () => {
 
             <form action="" className='w-4/5 mx-auto space-y-5' onSubmit={handleRegisterBtn}>
                 <div className='space-y-3'>
-                    <p>Username</p>
+                    <p>FirstName</p>
                     <label className="input input-bordered flex items-center gap-2">
                         <FaUser />
-                        <input type="text" name='username' className="grow" placeholder="Place your username" />
+                        <input type="text" name='firstName' className="grow" placeholder="Place your username" />
+                    </label>
+                </div>
+
+                <div className='space-y-3'>
+                    <p>Last Name</p>
+                    <label className="input input-bordered flex items-center gap-2">
+                        <FaUser />
+                        <input type="text" name='lastName' className="grow" placeholder="Place your username" />
                     </label>
                 </div>
 
