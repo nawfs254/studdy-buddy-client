@@ -59,9 +59,9 @@ const Navbar = () => {
                 {user ?
                     
                         <div className="dropdown dropdown-end">
-                            <div className="tooltip tooltip-left" tabIndex={0} role="button" data-tip="Username">
+                            <div className="tooltip tooltip-left" tabIndex={0} role="button" data-tip={user.displayName}>
                                 <div className="w-16 h-16 rounded-full border-orange border-4">
-                                    <img src={user.photoURL || userDefault} alt="" className="rounded-full" />
+                                    <img src={user.photoURL || userDefault} alt="" className="rounded-full w-full" />
                                 </div>
                             </div>
                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

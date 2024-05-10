@@ -7,8 +7,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-    const {signInWithEmail, user, setUser} = useContext(AuthContext)
-    
+    const { signInWithEmail, user, googleSignIn, facebookSignIn, githubSignIn, setUser } = useContext(AuthContext)
+
     const [isClicked, setIsClicked] = useState(false)
 
     const navigate = useNavigate()
@@ -16,7 +16,7 @@ const Login = () => {
     console.log(location)
 
     useEffect(() => {
-        if(user){
+        if (user) {
             navigate(location.state)
         }
     }, [user])
@@ -35,13 +35,49 @@ const Login = () => {
         console.log(email, password)
 
         signInWithEmail(email, password)
-            .then(user=> {
+            .then(user => {
                 console.log(user)
                 setUser(user)
                 toast.success('login')
             })
             .catch(error => {
                 toast.error(error.message)
+            })
+    }
+
+    const handleGithubSignIn = () => {
+        githubSignIn()
+            .then(user => {
+                console.log(user)
+                setUser(user)
+                toast.success("Google login")
+            })
+            .catch(error => {
+                toast.error(error)
+            })
+    }
+
+    const handleFacebookSignIn = () => {
+        facebookSignIn()
+            .then(user => {
+                console.log(user)
+                setUser(user)
+                toast.success("Google login")
+            })
+            .catch(error => {
+                toast.error(error)
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(user => {
+                console.log(user)
+                setUser(user)
+                toast.success("Google login")
+            })
+            .catch(error => {
+                toast.error(error)
             })
     }
 
@@ -88,21 +124,21 @@ const Login = () => {
                 </div>
 
                 <div className='my-5 flex flex-col gap-2 w-4/5 lg:w-3/5 mx-auto'>
-                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all'>
+                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all' onClick={handleGoogleSignIn}>
                         <div className='flex items-center gap-5'>
                             <FaGoogle size='1.25rem' />
                             <p>Login with Google</p>
                         </div>
                     </button>
 
-                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all'>
+                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all' onClick={handleFacebookSignIn}>
                         <div className='flex items-center gap-5'>
                             <FaFacebookF size='1.25rem' />
                             <p>Login with Facebook</p>
                         </div>
                     </button>
 
-                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all'>
+                    <button className='border p-3 rounded-md hover:bg-orange hover:border-orange transition-all' onClick={handleGithubSignIn}>
                         <div className='flex items-center gap-5'>
                             <FaGithub size='1.25rem' />
                             <p>Login with Github</p>
