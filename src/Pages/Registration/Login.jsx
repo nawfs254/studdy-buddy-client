@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from "../../assets/logo-study-buddy.png"
 import { MdEmail, MdKey } from 'react-icons/md';
 import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa6';

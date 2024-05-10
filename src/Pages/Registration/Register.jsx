@@ -1,11 +1,69 @@
+import toast, { Toaster } from "react-hot-toast";
 import logo from "../../assets/logo-study-buddy.png"
 import { FaFacebookF, FaGithub, FaGoogle, FaLink, FaUser } from 'react-icons/fa6';
 import { MdEmail, MdKey } from 'react-icons/md';
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useContext } from "react";
 
 const Register = () => {
+    const { registerWithEmail } = useContext(AuthContext)
+
+    const handleRegisterBtn = e => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const username = form.username.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+        const photoUrl = form.photoUrl.value;
+
+        // console.log(username, email, password, photoUrl)
+
+        if (!/^[^\s]+$/.test(username)) {
+            
+            toast.error('username cannot contain any spaces')
+            return
+        }
+
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            
+            toast.error("Your provided email is invalid")
+            return
+        }
+
+        if (password < 6) {
+            
+            toast.error('Password must have 6 characters')
+            return
+        }
+
+        if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
+        
+            toast.error('Password must contain at least one uppercase and one lowercase')
+            return
+        }
+
+        if (password !== confirmPassword) {
+        
+            toast.error('Password and Confirm password must be the same')
+            return
+        }
+
+        else{
+            registerWithEmail(email, password)
+                .then(user => console.log(user))
+                .catch(error => console.log(error))
+            toast.success("signed up")
+        }
+
+    }
+
     return (
         <div>
+            <Toaster></Toaster>
             <div className='w-full mx-auto text-center space-y-3 my-3'>
                 <div className='w-full'>
                     <img src={logo} alt="" className='w-28 h-28 mx-auto' />
@@ -14,7 +72,7 @@ const Register = () => {
                 <p>Register to know more</p>
             </div>
 
-            <form action="" className='w-4/5 mx-auto space-y-5'>
+            <form action="" className='w-4/5 mx-auto space-y-5' onSubmit={handleRegisterBtn}>
                 <div className='space-y-3'>
                     <p>Username</p>
                     <label className="input input-bordered flex items-center gap-2">
@@ -36,6 +94,17 @@ const Register = () => {
                     <label className="input input-bordered flex items-center gap-2">
                         <MdKey />
                         <input type="Password" name='password' className="grow" placeholder="Enter your password" />
+                        <button>
+                            Show
+                        </button>
+                    </label>
+                </div>
+
+                <div className='space-y-3'>
+                    <p>Confirm Password</p>
+                    <label className="input input-bordered flex items-center gap-2">
+                        <MdKey />
+                        <input type="Password" name='confirmPassword' className="grow" placeholder="Confirm your password" />
                         <button>
                             Show
                         </button>
