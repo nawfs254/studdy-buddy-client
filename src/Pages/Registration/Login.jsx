@@ -2,10 +2,42 @@ import logo from "../../assets/logo-study-buddy.png"
 import { MdEmail, MdKey } from 'react-icons/md';
 import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
+    const {signInWithEmail, setUser} = useContext(AuthContext)
+    
+    const [isClicked, setIsClicked] = useState(false)
+
+    const toggleShowAndHide = () => {
+        setIsClicked(!isClicked)
+    }
+
+    const handleLoginBtn = e => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password)
+
+        signInWithEmail(email, password)
+            .then(user=> {
+                console.log(user)
+                setUser(user)
+                toast.success('login')
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+    }
+
     return (
         <div>
+            <Toaster></Toaster>
             <div className='w-full mx-auto text-center space-y-3 my-3'>
                 <div className='w-full'>
                     <img src={logo} alt="" className='w-28 h-28 mx-auto' />
@@ -14,7 +46,7 @@ const Login = () => {
                 <p>Login to explore StudyBuddy</p>
             </div>
 
-            <form action="" className='w-4/5 mx-auto space-y-5'>
+            <form action="" className='w-4/5 mx-auto space-y-5' onSubmit={handleLoginBtn}>
                 <div className='space-y-3'>
                     <p>Email</p>
                     <label className="input input-bordered flex items-center gap-2">
@@ -27,9 +59,9 @@ const Login = () => {
                     <p>Password</p>
                     <label className="input input-bordered flex items-center gap-2">
                         <MdKey />
-                        <input type="Password" name='password' className="grow" placeholder="Enter your password" />
-                        <button>
-                            Show
+                        <input type={isClicked ? "text" : "password"} name='password' className="grow" placeholder="Enter your password" />
+                        <button onClick={toggleShowAndHide}>
+                            {isClicked ? "Hide" : "Show"}
                         </button>
                     </label>
                 </div>

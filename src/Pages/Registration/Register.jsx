@@ -7,7 +7,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useContext } from "react";
 
 const Register = () => {
-    const { registerWithEmail } = useContext(AuthContext)
+    const { registerWithEmail, setUser } = useContext(AuthContext)
 
     const handleRegisterBtn = e => {
         e.preventDefault();
@@ -54,9 +54,12 @@ const Register = () => {
 
         else{
             registerWithEmail(email, password)
-                .then(user => console.log(user))
+                .then(user => {
+                    setUser(user)
+                    toast.success("signed up")
+                })
                 .catch(error => console.log(error))
-            toast.success("signed up")
+            
         }
 
     }
