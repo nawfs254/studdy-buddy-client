@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-study-buddy.png"
+import userDefault from "../assets/images/userDefault.webp"
 
 const Navbar = () => {
 
@@ -31,6 +32,9 @@ const Navbar = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         {navMenu}
+                        
+                        {/* when user is logged in */}
+                        {/* {navMenuWhileLoggedIn   } */}
                     </ul>
                 </div>
                 <Link to="/"><img src={logo} alt="" className="w-20 md:w-24 h-20 md:h-24" /></Link>
@@ -38,11 +42,42 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navMenu}
+                    
+                    {/* when user is logged in */}
+                    {/* {navMenuWhileLoggedIn   } */}
                 </ul>
             </div>
             <div className="navbar-end gap-4">
-                <Link to="/login"><button className="btn text-base md:text-lg font-semibold bg-orange border-orange border-2 hover:bg-transparent hover:border-orange">Login</button></Link>
-                <Link to="/register"><button className="btn text-base md:text-lg font-semibold border-2 border-purple hover:bg-purple hover:text-white">Register</button></Link>
+                <Link to="/registration/login"><button className="btn text-base md:text-lg font-semibold bg-orange border-orange border-2 hover:bg-transparent hover:border-orange">Login</button></Link>
+                <Link to="/registration/register"><button className="btn text-base md:text-lg font-semibold border-2 border-purple hover:bg-purple hover:text-white">Register</button></Link>
+
+                {/* when user logged in */}
+                {/* <Link>
+                    <div className="dropdown dropdown-end">
+                        <div className="tooltip tooltip-left" tabIndex={0} role="button" data-tip="Username">
+                            <div className="w-16 h-16 rounded-full border-orange border-4">
+                                <img src={userDefault} alt="" className="rounded-full" />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <Link>
+                                    <button>Attempted assignments</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link>
+                                    <button>My Profile</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="bg-orange font-bold">
+                                    <button className="py-2 rounded-md">Logout</button>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </Link> */}
             </div>
         </div>
     );

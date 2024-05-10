@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 931" preserveAspectRatio="xMidYMid"
+    width="1920" height="931"
+    style="shape-rendering: auto; display: block; background: rgb(255, 255, 255);">
+    <g style="transform: matrix(-1, 0, 0, -1, 1920, 931);" data-idx="1">
+        <defs data-idx="2">
+            <filter height="6" width="6" y="-2" x="-2" id="f-nq4q5u6dq7r" data-idx="3">
+                <feGaussianBlur stdDeviation="61" data-idx="4"></feGaussianBlur>
+                <feComponentTransfer result="cutoff" data-idx="5">
+                    <feFuncA intercept="-60" slope="100" type="linear" data-idx="6"></feFuncA>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+        <g filter="url(#f-nq4q5u6dq7r)" id="g-nq4q5u6dq7r" data-idx="7">
+            <circle r="153" cy="0" cx="0" data-idx="8"
+                transform="matrix(1,0,0,1,1843.9827880859375,578.5604248046875)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="122" cy="0" cx="0" data-idx="10"
+                transform="matrix(1,0,0,1,1463.3958740234375,1001.2288818359375)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="116" cy="0" cx="0" data-idx="12"
+                transform="matrix(1,0,0,1,1074.852294921875,401.5955505371094)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="87" cy="0" cx="0" data-idx="14"
+                transform="matrix(1,0,0,1,1262.128173828125,240.60638427734375)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="152" cy="0" cx="0" data-idx="16"
+                transform="matrix(1,0,0,1,1515.8568115234375,659.8275146484375)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="92" cy="0" cx="0" data-idx="18"
+                transform="matrix(1,0,0,1,144.9842071533203,421.9208984375)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="91" cy="0" cx="0" data-idx="20"
+                transform="matrix(1,0,0,1,220.4039306640625,39.52899169921875)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="152" cy="0" cx="0" data-idx="22"
+                transform="matrix(1,0,0,1,1762.8367919921875,491.01080322265625)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="92" cy="0" cx="0" data-idx="24"
+                transform="matrix(1,0,0,1,1128.7506103515625,169.25991821289062)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="79" cy="0" cx="0" data-idx="26"
+                transform="matrix(1,0,0,1,547.45458984375,572.638671875)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="88" cy="0" cx="0" data-idx="28"
+                transform="matrix(1,0,0,1,870.8438720703125,949.0440673828125)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="104" cy="0" cx="0" data-idx="30"
+                transform="matrix(1,0,0,1,155.71177673339844,962.2041625976562)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="73" cy="0" cx="0" data-idx="32"
+                transform="matrix(1,0,0,1,1467.0836181640625,598.08984375)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="99" cy="0" cx="0" data-idx="34"
+                transform="matrix(1,0,0,1,178.186279296875,797.8128051757812)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+            <circle r="122" cy="0" cx="0" data-idx="36"
+                transform="matrix(1,0,0,1,974.7615966796875,179.5561981201172)"
+                style="fill: rgb(0, 255, 255);">
+
+            </circle>
+        </g>
+        <style type="text/css" data-idx="38"> #g-nq4q5u6dq7r circle { fill: #00ffff} </style>
+        <g data-idx="39"></g>
+    </g>
+    <text data-watermark="true" text-anchor="middle" dominant-baseline="middle" stroke-opacity="0.1"
+        fill="black" fill-opacity="0.1" stroke="white" stroke-width="1" font-size="15.0" x="960.0"
+        y="465.5" data-idx="40" style="opacity: 1; font-size: 15px;">LOADING.IO</text>
+</svg>

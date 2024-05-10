@@ -1,0 +1,5 @@
+.bannerBg{
+    background-image: url('../../assets/images/Bannerbg.svg');
+    background-position: center;
+    background-size: cover;
+}
