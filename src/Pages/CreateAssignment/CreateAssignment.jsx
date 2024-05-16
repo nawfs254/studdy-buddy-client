@@ -1,9 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const CreateAssignment = () => {
     const { user } = useContext(AuthContext)
     console.log(user)
+    const [startDate, setStartDate] = useState(new Date());
+
+    fetch("http://localhost:5000/assignments")
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
 
     const handleCreateBtn = (e) => {
         e.preventDefault();
@@ -15,9 +24,22 @@ const CreateAssignment = () => {
         const difficulty = e.target.difficulty.value;
         const submissionDate = e.target.submissionDate.value;
 
-        const createdAssignment =  {author : assignmentBy, title, marks, imgUrl, submissionDate, difficulty}
+        const createdAssignment = { assignmentBy, title, marks, imgUrl, submissionDate, difficulty }
 
         console.log(createdAssignment)
+
+
+
+        fetch("http://localhost:5000/assignments", {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(createdAssignment)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
 
     }
     return (
@@ -71,7 +93,10 @@ const CreateAssignment = () => {
                     <div className="label">
                         <span className="label-text">Due Date:</span>
                     </div>
-                    <input type="text" name="submissionDate" placeholder="Type submission deadline" className="input input-bordered w-full border-black" />
+                    <div className="w-full border my-1 p-2 rounded-md" >
+                    <DatePicker name="submissionDate" style={{'border' : 'none'}} selected={startDate} onChange={(date) => setStartDate(date)} />
+                    </div>
+                    
                 </label>
 
                 <label className="form-control w-full">
