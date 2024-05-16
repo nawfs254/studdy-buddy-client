@@ -7,6 +7,8 @@ import Register from "../Pages/Registration/Register";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ManageProfile from "../Pages/UserProfile/ManageProfile";
+import Assignments from "../Pages/Assignments/Assignments";
+import CreateAssignment from "../Pages/CreateAssignment/CreateAssignment";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +18,16 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/assignments",
+                element: <Assignments></Assignments>
+            },
+            {
+                path: "/create-assignment",
+                element: <ProtectedRoute>
+                    <CreateAssignment></CreateAssignment>
+                </ProtectedRoute>
             },
             {
                 path: "/user-profile",

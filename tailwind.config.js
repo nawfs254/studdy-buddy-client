@@ -10,7 +10,7 @@ export default {
       'black': '#000',
       'white': '#fff',
       'orange': '#F97300',
-      'purple': '#32012F'
+      'purple': '#32012F',
     },
   },
   plugins: [

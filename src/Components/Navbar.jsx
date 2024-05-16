@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo-study-buddy.png"
 import userDefault from "../assets/images/userDefault.webp"
 import { useContext } from "react";
@@ -20,20 +20,20 @@ const Navbar = () => {
 
     const navMenu =
         <div className="text-base md:text-lg flex flex-col md:flex-row">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/assignments">Assignments</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><NavLink to="/" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Home</NavLink></li>
+            <li><NavLink to="/assignments" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Assignments</NavLink></li>
+            <li><NavLink to="/about" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>About</NavLink></li>
+            <li><NavLink to="/contact" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Contact</NavLink></li>
         </div>
 
     const navMenuWhileLoggedIn =
         <div className="text-base md:text-lg flex flex-col lg:flex-row">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/assignments">Assignments</Link></li>
-            <li><Link to="/create-assignments">Create Assignmetns</Link></li>
-            <li><Link to="/pending-assignments">Pending Assignmetns</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><NavLink to="/" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Home</NavLink></li>
+            <li><NavLink to="/assignments" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Assignments</NavLink></li>
+            <li><NavLink to="/create-assignment" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Create Assignmetns</NavLink></li>
+            <li><NavLink to="/pending-assignments" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Pending Assignmetns</NavLink></li>
+            <li><NavLink to="/about" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>About</NavLink></li>
+            <li><NavLink to="/contact" className={({isActive}) => isActive ? `bg-base-200 border` : ``}>Contact</NavLink></li>
         </div>
 
     return (
