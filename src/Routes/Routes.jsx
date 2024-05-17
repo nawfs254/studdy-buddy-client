@@ -9,13 +9,16 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ManageProfile from "../Pages/UserProfile/ManageProfile";
 import Assignments from "../Pages/Assignments/Assignments";
 import CreateAssignment from "../Pages/CreateAssignment/CreateAssignment";
-import AssignmentDetails from "../Pages/Assignments/AssignmentDetails/AssignmentDetails";
 import UpdateAssignment from "../Pages/UpdateAssignment/UpdateAssignment";
+import AssignmentDetails from "../Pages/Assignments/AssignmentDetails/AssignmentDetails";
+import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -37,6 +40,12 @@ const router = createBrowserRouter([
                 path: "/create-assignment",
                 element: <ProtectedRoute>
                     <CreateAssignment></CreateAssignment>
+                </ProtectedRoute>
+            },
+            {
+                path: "/pending-assignments",
+                element: <ProtectedRoute>
+                    <PendingAssignments></PendingAssignments>
                 </ProtectedRoute>
             },
             {

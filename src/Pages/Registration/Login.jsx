@@ -13,7 +13,7 @@ const Login = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location)
+    // console.log(location)
 
     useEffect(() => {
         if (user) {
@@ -36,7 +36,7 @@ const Login = () => {
 
         signInWithEmail(email, password)
             .then(user => {
-                console.log(user)
+                // console.log(user)
                 setUser(user)
                 toast.success('login')
             })
@@ -48,7 +48,7 @@ const Login = () => {
     const handleGithubSignIn = () => {
         githubSignIn()
             .then(user => {
-                console.log(user)
+                // console.log(user)
                 setUser(user)
                 toast.success("Google login")
             })
@@ -60,7 +60,7 @@ const Login = () => {
     const handleFacebookSignIn = () => {
         facebookSignIn()
             .then(user => {
-                console.log(user)
+                // console.log(user)
                 setUser(user)
                 toast.success("Google login")
             })
@@ -72,7 +72,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(user => {
-                console.log(user)
+                // console.log(user)
                 setUser(user)
                 toast.success("Google login")
             })
