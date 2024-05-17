@@ -1,22 +1,47 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import toast, { Toaster } from "react-hot-toast";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
+const UpdateAssignment = () => {
 
-const CreateAssignment = () => {
-    const { user } = useContext(AuthContext)
-    console.log(user)
     const [startDate, setStartDate] = useState(new Date());
 
-    fetch("http://localhost:5000/assignments")
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
+    const navigate = useNavigate()
 
-    const handleCreateBtn = (e) => {
-        e.preventDefault();
+    const assignment = useLoaderData()
+
+    const { _id, author, title, marks, imgUrl, submissionDate, difficulty, description } = assignment
+
+    // const handleUpdateBtn = e => {
+    //     e.preventDefault()
+
+    //     const assignmentBy = e.target.assignmentBy.value;
+    //     const title = e.target.title.value;
+    //     const marks = e.target.marks.value;
+    //     const imgUrl = e.target.imgUrl.value;
+    //     const difficulty = e.target.difficulty.value;
+    //     const submissionDate = e.target.submissionDate.value;
+    //     const description = e.target.description.value;
+
+    //     const createdAssignment = { author:assignmentBy, title, marks, imgUrl, submissionDate, difficulty, description }
+
+    //     console.log(createdAssignment)
+
+    //     // fetch(`http://localhost:5000/assignments/${id}`, {
+    //     //     method: "PUT"
+    //     // })
+    //     //     .then(res => res.json())
+    //     //     .then(data => {
+    //     //         console.log(data)
+    //     //         // navigate('/assignments')
+    //     //     })
+
+    // }
+
+    const handleUpdateBtn = e => {
+        e.preventDefault()
+
 
         const assignmentBy = e.target.assignmentBy.value;
         const title = e.target.title.value;
@@ -26,47 +51,35 @@ const CreateAssignment = () => {
         const submissionDate = e.target.submissionDate.value;
         const description = e.target.description.value;
 
-        const createdAssignment = { author:assignmentBy, title, marks, imgUrl, submissionDate, difficulty, description }
+        const createdAssignment = { author: assignmentBy, title, marks, imgUrl, submissionDate, difficulty, description }
 
-        console.log(createdAssignment)
-        
-        if(assignmentBy == "" || title == "" || marks=="" || imgUrl == "" || submissionDate == "" || difficulty == "" || description == ""){
-            toast.error('You Cannot put any field empty')
-            return
-        }
+        console.log(createdAssignment, _id)
 
-        if(description.length < 250){
-            toast.error('Description must contain 250 words')
-            return
-        }
-
-
-
-
-        fetch("http://localhost:5000/assignments", {
-            method: 'post',
+        fetch(`http://localhost:5000/assignments/${_id}`, {
+            method: "PUT",
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(createdAssignment)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
-
+            .then(data => {
+                console.log(data)
+                navigate('/assignments')
+            })
     }
+
     return (
         <div>
-            <Toaster></Toaster>
-            <h1 className="text-center text-3xl font-bold my-5">Create Assignment</h1>
+            <h1 className="text-center text-3xl font-bold my-5">Update Assignment</h1>
 
-            <form className="m-3 grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleCreateBtn}>
+            <form className="m-3 grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleUpdateBtn}>
 
                 <label className="form-control w-full">
                     <div className="label">
                         <span className="label-text">Assignment by</span>
                     </div>
-                    <input type="text" name="assignmentBy" value={user.email || user.user.email} placeholder="Type the assignment title" className="input input-bordered w-full border-black" readOnly />
+                    <input type="text" value={author} name="assignmentBy" placeholder="Type the assignment title" className="input input-bordered w-full border-black" readOnly />
                 </label>
 
 
@@ -74,14 +87,14 @@ const CreateAssignment = () => {
                     <div className="label">
                         <span className="label-text">Title</span>
                     </div>
-                    <input type="text" name="title" placeholder="Type the assignment title" className="input input-bordered w-full border-black" />
+                    <input defaultValue={title} type="text" name="title" placeholder="Type the assignment title" className="input input-bordered w-full border-black" />
                 </label>
 
                 <label className="form-control w-full">
                     <div className="label">
                         <span className="label-text">Marks</span>
                     </div>
-                    <select name="marks" className="flex items-center select select-bordered border-black w-full gap-2">
+                    <select defaultValue={marks} name="marks" className="flex items-center select select-bordered border-black w-full gap-2">
                         <option disabled defaultChecked>Select marks</option>
                         <option>100</option>
                         <option>90</option>
@@ -100,7 +113,7 @@ const CreateAssignment = () => {
                     <div className="label">
                         <span className="label-text">Thumbnail Image URL</span>
                     </div>
-                    <input type="text" name="imgUrl" placeholder="Type the image url here" className="input input-bordered w-full border-black" />
+                    <input defaultValue={imgUrl} type="text" name="imgUrl" placeholder="Type the image url here" className="input input-bordered w-full border-black" />
                 </label>
 
                 <label className="form-control w-full">
@@ -108,7 +121,7 @@ const CreateAssignment = () => {
                         <span className="label-text">Due Date:</span>
                     </div>
                     <div className="w-full border my-1 p-2 rounded-md" >
-                        <DatePicker name="submissionDate" style={{ 'border': 'none' }} selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker defaultValue={submissionDate} name="submissionDate" style={{ 'border': 'none' }} selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
 
                 </label>
@@ -117,7 +130,7 @@ const CreateAssignment = () => {
                     <div className="label">
                         <span className="label-text">Assignment Dificulty</span>
                     </div>
-                    <select name="difficulty" className="flex items-center select select-bordered border-black w-full gap-2">
+                    <select defaultValue={difficulty} name="difficulty" className="flex items-center select select-bordered border-black w-full gap-2">
                         <option disabled defaultChecked>Select marks</option>
                         <option>Easy</option>
                         <option>Medium</option>
@@ -129,13 +142,13 @@ const CreateAssignment = () => {
                     <div className="label">
                         <span className="label-text">Description</span>
                     </div>
-                    <textarea name="description" className="textarea textarea-bordered h-24 border-black" placeholder="Type the assignment description"></textarea>
+                    <textarea defaultValue={description} name="description" className="textarea textarea-bordered h-24 border-black" placeholder="Type the assignment description"></textarea>
                 </label>
 
-                <button className="btn col-span-1 md:col-span-2 border-black ">Create</button>
+                <button className="btn col-span-1 md:col-span-2 border-black ">Update</button>
             </form>
         </div >
     );
 };
 
-export default CreateAssignment;
+export default UpdateAssignment;
