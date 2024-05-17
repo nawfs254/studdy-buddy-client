@@ -9,6 +9,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ManageProfile from "../Pages/UserProfile/ManageProfile";
 import Assignments from "../Pages/Assignments/Assignments";
 import CreateAssignment from "../Pages/CreateAssignment/CreateAssignment";
+import AssignmentDetails from "../Pages/Assignments/AssignmentDetails/AssignmentDetails";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/assignments",
-                element: <Assignments></Assignments>
+                element: <Assignments></Assignments>,
+                loader: () => fetch('http://localhost:5000/assignments')
+            },
+            {
+                path: "assignments/:id",
+                element: <ProtectedRoute>
+                    <AssignmentDetails></AssignmentDetails>
+                </ProtectedRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
             },
             {
                 path: "/create-assignment",

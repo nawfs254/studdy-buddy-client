@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const CreateAssignment = () => {
@@ -23,27 +24,40 @@ const CreateAssignment = () => {
         const imgUrl = e.target.imgUrl.value;
         const difficulty = e.target.difficulty.value;
         const submissionDate = e.target.submissionDate.value;
+        const description = e.target.description.value;
 
-        const createdAssignment = { assignmentBy, title, marks, imgUrl, submissionDate, difficulty }
+        const createdAssignment = { author:assignmentBy, title, marks, imgUrl, submissionDate, difficulty, description }
 
         console.log(createdAssignment)
+        
+        if(assignmentBy == "" || title == "" || marks=="" || imgUrl == "" || submissionDate == "" || difficulty == "" || description == ""){
+            toast.error('You Cannot put any field empty')
+            return
+        }
+
+        if(description.length < 250){
+            toast.error('Description must contain 250 words')
+            return
+        }
 
 
 
-        fetch("http://localhost:5000/assignments", {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(createdAssignment)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
+
+        // fetch("http://localhost:5000/assignments", {
+        //     method: 'post',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(createdAssignment)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.log(error))
 
     }
     return (
         <div>
+            <Toaster></Toaster>
             <h1 className="text-center text-3xl font-bold my-5">Create Assignment</h1>
 
             <form className="m-3 grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleCreateBtn}>
@@ -94,9 +108,9 @@ const CreateAssignment = () => {
                         <span className="label-text">Due Date:</span>
                     </div>
                     <div className="w-full border my-1 p-2 rounded-md" >
-                    <DatePicker name="submissionDate" style={{'border' : 'none'}} selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker name="submissionDate" style={{ 'border': 'none' }} selected={startDate} onChange={(date) => setStartDate(date)} />
                     </div>
-                    
+
                 </label>
 
                 <label className="form-control w-full">
@@ -109,6 +123,13 @@ const CreateAssignment = () => {
                         <option>Medium</option>
                         <option>Hard</option>
                     </select>
+                </label>
+
+                <label className="form-control col-span-1 md:col-span-2">
+                    <div className="label">
+                        <span className="label-text">Description</span>
+                    </div>
+                    <textarea name="description" className="textarea textarea-bordered h-24 border-black" placeholder="Type the assignment description"></textarea>
                 </label>
 
                 <button className="btn col-span-1 md:col-span-2 border-black ">Create</button>

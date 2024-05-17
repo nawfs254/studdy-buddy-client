@@ -16,7 +16,7 @@ const Navbar = () => {
                 navigate('/')
             })
     }
-    console.log(user)
+    // console.log(user)
 
     const navMenu =
         <div className="text-base md:text-lg flex flex-col md:flex-row">
