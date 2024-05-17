@@ -28,7 +28,7 @@ const UpdateAssignment = () => {
 
     //     console.log(createdAssignment)
 
-    //     // fetch(`http://localhost:5000/assignments/${id}`, {
+    //     // fetch(`https://studybuddy-server.vercel.app/assignments/${id}`, {
     //     //     method: "PUT"
     //     // })
     //     //     .then(res => res.json())
@@ -55,7 +55,7 @@ const UpdateAssignment = () => {
 
         console.log(createdAssignment, _id)
 
-        fetch(`http://localhost:5000/assignments/${_id}`, {
+        fetch(`https://studybuddy-server.vercel.app/assignments/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

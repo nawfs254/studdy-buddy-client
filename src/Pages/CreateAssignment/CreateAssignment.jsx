@@ -10,7 +10,7 @@ const CreateAssignment = () => {
     console.log(user)
     const [startDate, setStartDate] = useState(new Date());
 
-    fetch("http://localhost:5000/assignments")
+    fetch("https://studybuddy-server.vercel.app/assignments")
         .then(res => res.json())
         .then(data => console.log(data))
         .catch(error => console.log(error))
@@ -43,7 +43,7 @@ const CreateAssignment = () => {
 
 
 
-        fetch("http://localhost:5000/assignments", {
+        fetch("https://studybuddy-server.vercel.app/assignments", {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

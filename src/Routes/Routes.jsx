@@ -27,14 +27,14 @@ const router = createBrowserRouter([
             {
                 path: "/assignments",
                 element: <Assignments></Assignments>,
-                loader: () => fetch('http://localhost:5000/assignments')
+                loader: () => fetch('https://studybuddy-server.vercel.app/assignments')
             },
             {
                 path: "assignments/:id",
                 element: <ProtectedRoute>
                     <AssignmentDetails></AssignmentDetails>
                 </ProtectedRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
+                loader: ({ params }) => fetch(`https://studybuddy-server.vercel.app/assignments/${params.id}`)
             },
             {
                 path: "/create-assignment",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute>
                     <UpdateAssignment></UpdateAssignment>
                 </ProtectedRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/assignments/${params.id}`)
+                loader: ({ params }) => fetch(`https://studybuddy-server.vercel.app/assignments/${params.id}`)
             },
             {
                 path: "/user-profile",

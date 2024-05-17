@@ -10,7 +10,7 @@ const Assignments = () => {
     const handleDeleteBtn = (id) => {
         console.log("clicked", id)
 
-        fetch(`http://localhost:5000/assignments/${id}`, {
+        fetch(`https://studybuddy-server.vercel.app/assignments/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
